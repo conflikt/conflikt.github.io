@@ -34,7 +34,7 @@ Rails will assume there is a table “movies_gallery_photos” that include fore
 
 `:id=>false` will prevent the creation of the default primary key for that table.
 
-As API documentation say: other attributes in that relation will be loaded with the objects and will be read only, including the :id. So failing to disable the id generation for that table will cause the loaded objects to have and “id” attribute holding the value of the id or the movies_gallery_photos entries instead of the ids of the target entity (movies or gallery_photos here).
+As API documentation say: other attributes in that relation will be loaded with the objects and will be read only, including the :id. So failing to disable the id generation for that table will cause the loaded objects to have and “id” attribute holding the value of the id of the movies_gallery_photos entries instead of the ids of the target entity (movies or gallery_photos here).
 
 #### Issue
 Having (:id) false helps to over Mysql::Error: Duplicate entry ‘#’ for key #” entry error we faces while adding entries. `movie.gallery_photos << photo`. But it leads to creation and availability of duplicate values in the movies_gallery_photos table. i.e.

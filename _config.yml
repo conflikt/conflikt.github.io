@@ -24,7 +24,7 @@ tag_dir: tags
 archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
-i18n_dir: :lang
+i18n_dir: en
 skip_render:
 
 # Writing
@@ -65,7 +65,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: very-simple #freemind
+theme: freemind.386 #freemind
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
