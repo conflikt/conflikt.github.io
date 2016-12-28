@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Assets &amp; Database hosting on Amazon/S3 | Sandeep Kumar</title>
+  <meta name="author" content="Sandeep Kumar">
+  
+  <meta name="description" content="Assets HostingLately I was working on a project, highly data driven. Its a movie social network, means there are lots of assets, Photos, Audios &amp;amp; ">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Assets &amp; Database hosting on Amazon/S3"/>
+  <meta property="og:site_name" content="Sandeep Kumar"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Sandeep Kumar</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Assets &amp; Database hosting on Amazon/S3</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="Assets-Hosting"><a href="#Assets-Hosting" class="headerlink" title="Assets Hosting"></a>Assets Hosting</h2><p>Lately I was working on a project, highly data driven. Its a movie social network, means there are lots of assets, Photos, Audios &amp; videos. Thats why we should keep continuous backup for our data on some 3rd party provider or somewhere else, which is easier to manage. We are using Amazon::S3 module for our assets and database backup.</p>
+<h3 id="Database-Backup"><a href="#Database-Backup" class="headerlink" title="Database Backup"></a>Database Backup</h3><p>For database backup on S3 we used a ruby gem named “mysql_s3_backup”, a simple backup script for mysql and s3 with incremental backups. Before starting the backups, Create a YAML config file:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="attr">mysql:</span></div><div class="line">  <span class="comment"># Database name to backup</span></div><div class="line"><span class="attr">  database:</span> xyz_development</div><div class="line">  <span class="comment"># Mysql user and password to execute commands</span></div><div class="line"><span class="attr">  user:</span> dbuser</div><div class="line"><span class="attr">  password:</span> paswword</div><div class="line">  <span class="comment"># Path to mysql binaries, like mysql, mysqldump (optional)</span></div><div class="line"><span class="attr">  bin_path:</span> /usr/bin/</div><div class="line">  <span class="comment"># Path to the binary logs, should match the bin_log option in your my.cnf</span></div><div class="line"><span class="attr">  bin_log:</span> /var/lib/mysql/binlog/mysql-bin</div><div class="line"><span class="attr">s3:</span></div><div class="line">  <span class="comment"># S3 bucket name to backup to</span></div><div class="line"><span class="attr">  bucket:</span> bucketname</div><div class="line">  <span class="comment"># S3 credentials</span></div><div class="line"><span class="attr">  access_key_id:</span> XXXXXXXXXXXXXXX</div><div class="line"><span class="attr">  secret_access_key:</span> XXXXXXXXXXXXXXXXXXXXXX</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="string">"Create a full backup:</span></div><div class="line">mysql_s3_backup -c=your_config.yml full</div><div class="line">"Create an incremental backup:</div><div class="line">mysql_s3_backup -c=your_config.yml inc</div><div class="line"><span class="string">"Restore the latest backup (applying incremental backups):</span></div><div class="line">mysql_s3_backup -c=your_config.yml restore</div><div class="line">"Restore a specific backup (NOT applying incremental backups):</div><div class="line">mysql_s3_backup -c=your_config.yml restore 20091126112233</div></pre></td></tr></table></figure>
+<p>We were planning to just keep backup for last 5 copies of the database. So, I did a tweak in the code, and written one wrapper class over the GEM for storing only last 5 backups [in case of full backups only].</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'mysql_s3_backup'</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MysqlS3Dumper</span>    </span></div><div class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:config</span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">MysqlS3Backup::Backup</span></span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">full</span><span class="params">(name=make_new_name)</span></span></div><div class="line">      lock <span class="keyword">do</span></div><div class="line">        <span class="comment"># When the full backup runs it delete any binary log files that might already exist</span></div><div class="line">        <span class="comment"># in the bucket. Otherwise the restore will try to restore them even though they’re</span></div><div class="line">        <span class="comment"># older than the full backup.</span></div><div class="line">        @bucket.delete_all @bin_log_prefix</div><div class="line">        with_temp_file <span class="keyword">do</span> <span class="params">|file|</span></div><div class="line">          puts file</div><div class="line">          @mysql.dump(file)</div><div class="line">          @bucket.store(dump_file_name(name), file)</div><div class="line">          @bucket.copy(dump_file_name(name), dump_file_name(<span class="string">"latest"</span>))</div><div class="line">          @bucket.keep_last_five</div><div class="line">        <span class="keyword">end</span></div><div class="line">      <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">MysqlS3Backup::Bucket</span></span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">keep_last_five</span></span></div><div class="line">      puts @name</div><div class="line">      puts <span class="string">"coming to bucket"</span></div><div class="line">      all_backups = AWS::S3::Bucket.objects(@name)</div><div class="line">      <span class="keyword">while</span> all_backups.count &amp;gt; <span class="number">6</span></div><div class="line">        AWS::S3::Bucket.objects(@name).first.delete</div><div class="line">        all_backups = AWS::S3::Bucket.objects(@name)</div><div class="line">      <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span></span></div><div class="line">    @config = MysqlS3Backup::Config.from_yaml_file(File.dirname(__FILE_<span class="number">_</span>) + <span class="string">"/../config/s3_mysql.yml"</span>)</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="Assets-Backup"><a href="#Assets-Backup" class="headerlink" title="Assets Backup"></a>Assets Backup</h3><p>For assets backup we use S3Backup ruby gem. S3Backup, is a backup tool to local directory to Amazon S3. It uploads local directory to Amazon S3 with compression. If directories isn’t modified after prior backup,those aren’t upload. It can be Cryptnize upload files if password and salt are configured. To use remotebackup,you should prepare backup configuration file by yaml such below:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="attr">bucket:</span> <span class="string">"bucket name"</span></div><div class="line"><span class="attr">directories:</span></div><div class="line"><span class="bullet">  -</span> <span class="string">"absolute path to directory for backup/restore"</span></div><div class="line"><span class="bullet">  -</span> <span class="string">"iterate directory as you like"</span></div><div class="line"><span class="attr">access_key_id:</span> <span class="string">'Amazon access_key_id'</span></div><div class="line"><span class="attr">secret_access_key:</span> <span class="string">'Amazon secret_access_key'</span></div><div class="line"><span class="attr">password:</span> <span class="string">'password for aes. (optional)'</span></div><div class="line"><span class="attr">salt:</span> <span class="string">'HexString(16 length) (must when password is specified)'</span></div><div class="line"><span class="attr">buffer_size:</span> <span class="string">'number of byte max 50000000000 (optional default 32000000)'</span></div><div class="line"><span class="attr">max_retry_count:</span> <span class="string">'number of retry of post if post failed.(optional default 10)'</span></div><div class="line"><span class="attr">proxy_host:</span> proxy host address if you use proxy.</div><div class="line"><span class="attr">proxy_port:</span> proxy port if you use proxy.</div><div class="line"><span class="attr">proxy_user:</span> login name for proxy server if you use proxy.</div><div class="line"><span class="attr">proxy_password:</span> login password for proxy server if you use proxy.</div><div class="line"><span class="attr">log_level:</span> <span class="string">'output log level. value is debug or info or warn or error(optional default info)'</span></div><div class="line"><span class="attr">temporary:</span> <span class="string">'temporary directory path. default(/tmp)</span></div></pre></td></tr></table></figure>
+<ul>
+<li>If directories isn’t specified when restore, it restores all directories in bucket.</li>
+</ul>
+<h4 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h4><p><strong>backup</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">s3backup [<span class="_">-f</span> configuration file] [-v verbose message] [<span class="_">-l</span> path <span class="keyword">for</span> <span class="built_in">log</span>] [-h <span class="built_in">help</span>]</div><div class="line">configuration file  path to file written above contents. default is ./backup.yml</div><div class="line">verbose             display directory tree and difference of anterior backup</div><div class="line">path <span class="keyword">for</span> <span class="built_in">log</span>        defaut starndard output.</div><div class="line"><span class="built_in">help</span>                <span class="built_in">help</span> message</div></pre></td></tr></table></figure>
+<p><strong>restore</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">s3backup -r [<span class="_">-f</span> configuration file] [-v verbose message] [<span class="_">-l</span> path <span class="keyword">for</span> <span class="built_in">log</span>] [-o output dir] [-h <span class="built_in">help</span>]</div><div class="line">configuration file  path to file written above contents. default is ./backup.yml</div><div class="line">verbose             display directory tree and difference of anterior backup</div><div class="line">path <span class="keyword">for</span> <span class="built_in">log</span>        defaut starndard output.</div><div class="line">output dir          path to directory <span class="keyword">for</span> restore directory. defaut is .</div><div class="line"><span class="built_in">help</span>                <span class="built_in">help</span> message</div></pre></td></tr></table></figure>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2011/12/09/titanium-passing-parameters-between-windows-how-to-make-things-global/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Anterior</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2010/10/21/imdbcelebrity-a-new-rubygem-for-parsing-celebritydata-from-www-imdb-com/" type="button" class="btn btn-default ">Próximo<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comentários</h2>
+
+    
+    <div id="disqus_thread" class="ds-thread">
+        <script type="text/javascript">
+            /**
+             * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+             */
+                /*
+                 var disqus_config = function () {
+                 this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+                 this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                 };
+                 */
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+
+                s.src = '//sandeepkrao.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
+    </div>
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2011-02-16 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/assets-hosting/">assets hosting<span>1</span></a></li> <li><a href="/tags/S3/">S3<span>1</span></a></li> <li><a href="/tags/rails/">rails<span>5</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'sandeepkrao';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Sandeep Kumar
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

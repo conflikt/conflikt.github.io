@@ -1,0 +1,746 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Sandeep Kumar</title>
+  <meta name="author" content="Sandeep Kumar">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Sandeep Kumar"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Sandeep Kumar</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 <div class="page-header logo">
+  <h1>Learn . Experiment . Build . Repeat<span class="blink-fast">∎</span></h1>
+</div>
+
+<div class="row page">
+
+	
+	<div class="col-md-9">
+	
+
+		<div class="slogan">
+      <i class="fa fa-heart blink-slow"></i>
+      Keep and carry on.
+</div>    
+		<div id="top_search"></div>
+		<div class="mypage">
+		
+		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2015/01/18/How-to-create-new-vim-colorscheme/" >VimLeaning: How to create vim colorscheme?</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2015-01-18  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>Vim is one of the popular choice as text editor for power users. One of the most important aspect to use a text editor is the look and feel. Vim is quite rich in terms of themes, either pre-bundled with vim distribution or added by community users. If you want to use an existing color scheme with vim, the simplest way is to:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Create `~/.vim/colors` folder if not exists already.</div><div class="line">Add the `.vim` colorscheme file to the colors folder.</div><div class="line">Go to vim/mvim and use `colorscheme scheme_name` to use the corresponding colorscheme.</div><div class="line">To apply the corresponding colorscheme everytime vim/mvim runs, add the `colorscheme scheme_name` to your ~/.vimrc or ~/.vimrc.after or any other config file which loads everytime you runs vim/mvim.</div></pre></td></tr></table></figure>
+<p>A good ColorScheme is the key to work long hours on any editor. Mostly people use one of the existing theme. But when they get more familiar with the structure, insights of vim, they either <code>customize existing theme</code> or <code>create their own</code>. Here I am going to discuss about how we can create a new vim theme.</p>
+<p>First of all we need to decide what we are actually targeting in terms of vim color-scheme i.e. Are we looking for dark/light color palate, Are we planning to support GUI and terminal mode of vim etc. For this particular use blog post I will be concentrating on <strong>GUI based dark color-scheme</strong>.</p>
+<p>First, we need to clear any predefined colors or background.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">highlight clear</div><div class="line"><span class="keyword">if</span> exists(<span class="string">"syntax_on"</span>)</div><div class="line">  syntax reset</div><div class="line">endif</div></pre></td></tr></table></figure>
+<p><code>hi[ghlight] clear</code> will reset all the highlighting for groups added by user. Uses the current value of ‘background’ to decide which default color group to use. <code>syntax reset</code> gets the colors back to default ones, but doesn’t change color for highlight options.</p>
+<p>Now, set the global variables. background and name of your theme so that its easier to include &amp; manipulate.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> background=dark</div><div class="line"><span class="built_in">set</span> g:colors_name=<span class="string">"my-theme"</span></div></pre></td></tr></table></figure>
+<p><code>set background</code> will set the theme palate for the us. Setting a global colors_name helps in identifying the themes.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span>!  GuiFor(group, ...)</div><div class="line">  <span class="built_in">let</span> histring = <span class="string">'hi '</span> . a:group . <span class="string">' '</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> strlen(a:1)</div><div class="line">    <span class="built_in">let</span> histring .= <span class="string">'guibg='</span> . a:1 . <span class="string">' '</span></div><div class="line">  endif</div><div class="line"></div><div class="line">  <span class="keyword">if</span> strlen(a:2)</div><div class="line">    <span class="built_in">let</span> histring .= <span class="string">'guifg='</span> . a:2 . <span class="string">' '</span></div><div class="line">  endif</div><div class="line"></div><div class="line">  <span class="keyword">if</span> a:0 &gt;= 3 &amp;&amp; strlen(a:3)</div><div class="line">    <span class="built_in">let</span> histring .= <span class="string">'gui='</span> . a:3 . <span class="string">' '</span></div><div class="line">  endif</div><div class="line"></div><div class="line">  execute histring</div><div class="line">endfunction</div></pre></td></tr></table></figure>
+<p>This method will be the corner stone how we are going to add highlight rules for different hilight groups. This method is expecting first argument to be the <code>highlight group</code>. Also, the 2nd and 3rd arguments are <code>guibg</code> &amp; <code>guifg</code> respectively and are mandatory to be pass. The last argument is <code>gui</code> which is optional. This method concatenate the arguments with their respective values and evaluate the resultant string with <code>execute</code> command.</p>
+<p>A sample method call can be something like </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GuiFor(<span class="string">"Normal"</span>,<span class="string">"#000000"</span>, <span class="string">"#afafaf"</span>)</div><div class="line">GuiFor(<span class="string">"Constant"</span>, <span class="string">"NONE"</span>, <span class="string">"#gray80"</span>)</div></pre></td></tr></table></figure>
+<p>With this, you will be able to create your own vim colorscheme. Apart from the happy flow mentioned above, we can also have some sort of compatibility matrices to be fulfilled like <code>based on the version of vim, whether 256 color palate or not, etc</code></p>
+<p>In case of any further query, put it either in comments or write to me at <a href="mailto:skr.ymca@gmail.com" target="_blank" rel="external">konflikt</a></p>
+
+	
+	</div>
+  <a type="button" href="/2015/01/18/How-to-create-new-vim-colorscheme/#more" class="btn btn-default more">Leia Mais</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2012/07/19/spree-extend-updating-eligibility-criteria-for-any-existing-promotion-rule/" >Spree Extend: Updating eligibility criteria for any existing promotion rule</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2012-07-19  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>As I mentioned in my last post <a href="http://whatpeoplethink.wordpress.com/2012/07/12/spree-extend-creating-custom-promotion-rule/" target="_blank" rel="external">spree-extend</a>, how to create custom promotion rule(s) while working with Spree based e-Commerece website. Last weekend, I faced a situation where I need to update the existing promotion rule to handle some specific condition.</p>
+<h3 id="Scenario"><a href="#Scenario" class="headerlink" title="Scenario"></a>Scenario</h3><p>For example, when I select “Product(s)” spree default rule, it gives us the option to choose products manually or choose by product group and its working as expected. Later, my client told me he wants, when he selects by product_group he can actually select some Taxons/Tags so that only the products belongs to that product_group and has taxon(s) listed there are eligible for this promotion.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>For updating any existing promotion rules in spree there are few generic steps we need to follow,</p>
+<ul>
+<li>Extend the corresponding spree-&gt;promotion-&gt;rules model class. Here, I created a file <code>app/models/promotion/rules/product_decorator.rb</code></li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Promotion::Rules::Product.class_eval <span class="keyword">do</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Create the attribute accessors/ accessibles for new attributes you needed.</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Promotion::Rules::Product.class_eval do</div><div class="line">  has_and_belongs_to_many :taxons, class_name: "::taxon", join_table: "taxons_promotion_rules", foreign_key: "promotion_rule_id"</div><div class="line">  attr_accessible :taxon_ids_string</div><div class="line">  //setter and getter methods</div><div class="line">  def taxon_ids_string</div><div class="line">    self.taxon_ids.join(",")</div><div class="line">  end</div><div class="line">  def taxon_ids_string=(string)</div><div class="line">    self.taxon_ids = string.split(",").map(&amp;:strip)</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<ul>
+<li>update the corresponding View file for the same rule in admin/promotions/rules/_product.html.haml or .erb if you are using erb. Add the required code for handling the same. In My case I added one TokenInput object to get multiple taxons selection. Add code something like this… where-ever you think is more suitable for you.</li>
+</ul>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">%<span class="selector-tag">p</span>&#123;<span class="attr">:class</span>=&gt;<span class="string">"field products_rule_taxons"</span>&#125;</span></div><div class="line"><span class="tag">  %<span class="selector-tag">label</span></span></div><div class="line">    =<span class="ruby"> <span class="string">"Choose Taxons"</span></span></div><div class="line">    =<span class="ruby"> taxon_picker_field <span class="string">"<span class="subst">#&#123;param_prefix&#125;</span>[tag_ids_string]"</span>, promotion_rule.taxon_ids_string</span></div></pre></td></tr></table></figure>
+<p>There are 2 different ways of adding this to view file. One, you can write a decorator and tell before/after which object you want to put this code. Second, you can re-write the complete file and do whatever you need. Upto you.</p>
+<p>Also, <code>taxon_picker_field</code> is a helper method which I created for creating the <code>tokenInput/tokenizer</code> object. Create the <code>AdminBaseHelper</code> decorator file, if not exists and put the following code or something like that,</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Admin::BaseHelper.module_eval <span class="keyword">do</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">taxon_picker_field</span><span class="params">(name, value)</span></span></div><div class="line">    taxons = value == <span class="string">""</span> ?  [] : Taxon.where(<span class="string">"id in ('<span class="subst">#&#123;value&#125;</span>')"</span>)</div><div class="line">    taxon_names_hash = taxons.inject(&#123;&#125;)&#123;<span class="params">|memo,item|</span> memo[item.id] = item.name; memo&#125;</div><div class="line">    <span class="string">%(tag_picker_initializer()</span>;).html_safe</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Update the eligible? and/or eligible_products methods as per your rule updations. Here in my case I just need to change the eligible_products method. Add the following code in <code>app/models/promotion/rules/product_decorator.rb</code></li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">eligible_products</span></span></div><div class="line">  <span class="keyword">if</span> product_group</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.taxons.collect(&amp;amp;<span class="symbol">:products</span>).flatten</div><div class="line">  <span class="keyword">end</span></div><div class="line">  products</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>Or something like that as per your requirements</p>
+<p>And yes, We are good to go and the new rule criteria will be applied from now on-wards. Good luck, In case of any query, feel free to ask here or email me at <a href="mailto:skr.ymca@gmail.com" target="_blank" rel="external">Sandeep Kumar</a></p>
+
+	
+	</div>
+  <a type="button" href="/2012/07/19/spree-extend-updating-eligibility-criteria-for-any-existing-promotion-rule/#more" class="btn btn-default more">Leia Mais</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2012/07/12/spree-extend-creating-custom-promotion-rule/" >Spree Extend: Creating Custom Promotion Rule</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2012-07-12  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>I’m working on an E-commerce website for sometime now. We are usingi <a href="http://spreecommerce.com/" target="_blank" rel="external">spree</a> as backbone of the project and customizing where and when its required. Spree is quite good and fully functioning E-commerce Rails engine which give you base to build a e-commerce website quickly and with lesser efforts.</p>
+<p>One of the main features of any e-commerce website is Promotions/Coupons. Spree also has a built in spree promotion module which is ready to use with predefined rules and adjustment calculators. Being an ADMIN I can define any new promotion rules i.e. first order, user specific, products specific etc. Also I can define the actions like ALL or ANY. You can have a look on spree_promo module at <a href="https://github.com/spree/spree/tree/master/promo" target="_blank" rel="external">spree_promo</a> and see how it works.</p>
+<p>Spree already provides some 4-5 predefined Promotions Rules on the basis of which every order get cross-checked whether some adjustments has to be done or not. Most of the time these rules/calculators are more than enough in general usage, but sometimes we need few very specific CUSTOM rules to be defined. Here I’m going to explain how easy it is to create new spree promotion rules.</p>
+<h4 id="Create-Promotion-Rule"><a href="#Create-Promotion-Rule" class="headerlink" title="Create Promotion Rule"></a>Create Promotion Rule</h4><ol>
+<li>create a model file app/models/spree/promotion/rules/my_custom_promotion.rb</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">module Spree</div><div class="line">  class Promotion::Rules::MyCustomPromotion &amp;lt; PromotionRule</div><div class="line">    // required associations or preferences if any</div><div class="line">    // required attribute accessible if you need to protect some attributes from mass assignment</div><div class="line">    // match polices and operators</div><div class="line">    MATCH_POLICIES = %w(any all) // as per your requirement</div><div class="line">    def eligible?(order, options=&#123;&#125;)</div><div class="line">      // This method is the place where every order is being verified whether its eligible for any promotional discount</div><div class="line">    end</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<ol>
+<li>Add this custom promotion rule to default spree promotion rules list. Write the following code in either <code>application.rb</code> or some initializer</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">initializer <span class="string">"spree.promo.register.promotions.rules"</span> <span class="keyword">do</span> <span class="params">|app|</span></div><div class="line">  app.config.spree.promotions.rules += [Spree::Promotion::Rules::MyCustomPromotion]</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<ol>
+<li>Add the translations for name &amp; description for custom rule as spree use the standard view for all with Translation method <code>t(&#39;name&#39;)</code> or <code>t(&#39;description&#39;)</code>. Write the following code in your <code>config/locales/en.yml</code> (or any other locale file if you are having multilingual products).</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attr">en:</span></div><div class="line"><span class="attr">  promotion_rule_types:</span></div><div class="line"><span class="attr">    product_by_tag:</span></div><div class="line"><span class="attr">      name:</span> Products By MyCustomPromotion</div><div class="line"><span class="attr">      description:</span> Add products from MyCustomPromotion</div></pre></td></tr></table></figure>
+<ol>
+<li>Create the view partial file for the custom promotion rule. Add a file <code>app/admin/promotions/rules/_my_custom_promotion.html.erb</code> or haml or something else depending on the template engine you are using for views. And, restart your application server and you are good to go. Now whenever you are going to edit the Promotion, in the promotions rules list you will see you custom rule also available.</li>
+</ol>
+<ul>
+<li>if you want some custom price adjustments/calculations as well, then you have to create a new calculator. E.g. If I want to define some flat percentage benefit on my custom promotion we have to create <code>app/models/spree/calculator/flat_percentage.rb</code></li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">module Spree</div><div class="line">  class Calculator::FlatPercetange &amp;lt; Calculator</div><div class="line">    // preferences if there are any.</div><div class="line">    // attributes accessibles</div><div class="line">    def compute(object)</div><div class="line">      // main method where we have to compute the adjustments we have to made.</div><div class="line">    end</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>I hope it helped someone. In case of any query, please feel free to ask here or drop me a mail at <a href="mailto:skr.ymca@gmail.com?subject=Re:Creating custom spree promotion rule" target="_blank" rel="external">Sandeep Kumar</a></p>
+
+	
+	</div>
+  <a type="button" href="/2012/07/12/spree-extend-creating-custom-promotion-rule/#more" class="btn btn-default more">Leia Mais</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2011/12/12/generating-dashboard-like-layout-for-android-with-titanium/" >Generating Dashboard like layout for android with Titanium</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2011-12-12  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>From sometime, I was working on a Titanium project, where we apply so many tweaks and did so much of research work. One the requirement of the application to make an dashboard kind of layout for landing screen of the application. For iphone-titanium, The Dashboard View provides a view that supports the ability to have Springboard-like view of icons which can be reordered by dragging and can contain multiple pages of icons in a scrollable view. The Dashboard View is created by the method <a href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.UI.createDashboardView-method.html" target="_blank" rel="external">Titanium.UI.createDashboardView</a>.</p>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> x=<span class="number">0</span>;x&lt;<span class="number">1</span>;x++)</div><div class="line">&#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> c=<span class="number">0</span>;c&lt;labels.length;c++)</div><div class="line">  &#123;</div><div class="line">      <span class="keyword">var</span> item = Titanium.UI.createDashboardItem(&#123;</div><div class="line">          <span class="attr">image</span>:<span class="string">'../images/dashboard/'</span>+labels[c]+<span class="string">'.png'</span>,</div><div class="line">          <span class="attr">selectedImage</span>:<span class="string">'../images/dashboard/'</span>+labels[c]+<span class="string">'_on.png'</span>,</div><div class="line">          <span class="attr">label</span>:labels[c]</div><div class="line">      &#125;);</div><div class="line">      <span class="keyword">if</span> (c==<span class="number">0</span>) item.badge = <span class="number">0</span>;</div><div class="line">      data.push(item);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>But there is no alternate for the same for android-titanium. So we decided to create our own customized dashboard implementation.  Also, we were using tweatanium kind of design flow for the application. Later I decide to move the dashboard code as a module out of the application, so that we can plug it anywhere when required and re-use that.<br>To utilize the DashBoard module, first create the application level hash variable, so that we can include this code/module/file in app.js and use it everywhere else.<br>In your app.js initialize the global variable<br></p>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">application.dashboard = &#123;&#125;;</div><div class="line">Ti.include(<span class="string">"path_to_dir/dashboard.js"</span>);</div><div class="line"><span class="comment">// Your rest of the code of app.js</span></div></pre></td></tr></table></figure>
+<p></p><p>Before starting the code for designing the dashboard, we have to make our mind, whether we want 3xN or 4xN dashboard layout. Because correspondingly we need to resize/redesign our images for dashboard icons. Whiling using the dashboard module, we need to take care about few constants/configurable variables which are helpful for writing the code. e.g.,</p><p></p>
+<ul>
+<li>dashboard_items  [{..}, {…},…] is a array of hashes which use keep track of the different icons which we are going to display on the dashboard, which contains 3 main values related to each icon <title, icon-logo,="" js-file="">.</title,></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dashboard_items = [&#123;<span class="attr">title</span>: <span class="string">'Home'</span>, icon-logo: <span class="string">'images/home.png'</span>, js-file: <span class="string">'xxxxx/home.js'</span>&#125;......];</div></pre></td></tr></table></figure>
+<ul>
+<li>incrementer is vertical spacing between icons on the dashboard</li>
+<li>we can set font, color, font-family for dashboard icons as well. etc</li>
+</ul>
+
+	
+	</div>
+  <a type="button" href="/2011/12/12/generating-dashboard-like-layout-for-android-with-titanium/#more" class="btn btn-default more">Leia Mais</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2011/12/09/titanium-passing-parameters-between-windows-how-to-make-things-global/" >Titanium : Passing parameters between windows [How to make things global]</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2011-12-09  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>While working on any titanium application, one of the common possibilities is to use some variables/constants across the windows. In Titanium, windows use to have their on context. That means the variables/values available on one window are not available on the others linked windows by default. So, if we are required to pass parameters between windows,  there are many different ways to achieve this. So, choosing a perfect approach for passing variables/parameters within windows depends on the requirement we are having. In our last project we had used few different approaches as per our requirements. Few of them are :</p>
+<h4 id="Ti-App-Properties"><a href="#Ti-App-Properties" class="headerlink" title="Ti.App.Properties:"></a>Ti.App.Properties:</h4><p>There are few cases where we need to store values to be used everywhere in the application, and we want to retain those values even when application is not-running/ in-background. The App Properties module is used for storing application related property/value pairs which persist beyond application sessions.</p>
+<p>We can set the property/value pair as:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Titanium.App.Properties.setString(<span class="string">"my_prop"</span>,<span class="string">"cool"</span>);</div></pre></td></tr></table></figure>
+<p>Now, as property/value pair is set. Now I can simply retrieve that value where I want in the application as:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> value = Titanium.App.Properties.getString(<span class="string">"my_prop"</span>);</div></pre></td></tr></table></figure>
+<p>While setting properties in Ti.App.Properties, we have to make sure few things:</p>
+<ul>
+<li>we are actually making things globally available, means whatever values we are storing, should not conflict with already existing global titanium constants, otherwise functionality will suffer. For more information, check Titanium documentation at <a href="https://developer.appcelerator.com/apidoc/mobile/1.0/Titanium.App.Properties" target="_blank" rel="external">Titanium.App.Properties</a></li>
+</ul>
+<h4 id="Ti-App"><a href="#Ti-App" class="headerlink" title="Ti.App:"></a>Ti.App:</h4><p>There are cases, when we need few values to be available all over the application, but when we close the application, those values should not be available any-more. For example,  while working on an application I need to access the current locale for the device for different purposes. But when I closes the application, I don’t need that value to persist as use can change the locale in-between as well. So better to make request to get these kind of values when app initializes and persist those values throughout the application session.</p>
+<p>We can declare methods and variables to be globally available with Ti.App as:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Ti.App.sample_variable = <span class="string">"xxxxxx"</span>;</div><div class="line">Ti.App.sample_function = <span class="function"><span class="keyword">function</span>(<span class="params">_args</span>)</span>&#123; <span class="comment">//your code for the function &#125;;</span></div></pre></td></tr></table></figure>
+<p>Then we can use this variable/method anywhere in our application. It will be available in the application session.</p>
+<h4 id="App-Level-Global-Declaration"><a href="#App-Level-Global-Declaration" class="headerlink" title="App Level Global Declaration"></a>App Level Global Declaration</h4><p>For past weeks I was wondering about what are the best ways of writing titanium javascript code to make it more generic, reusable and more modular. Tweetanium, the sample application build by titanium/appcelerator team to help people, posses a new approach for design/creation of titanium based applications. Approach is to maintain an Application Level NAMESPACE and write each and every single peace of code wither to that namespace or sub-namespaces to that. e.g.</p>
+<p>In app.js of your application,</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//app.js</span></div><div class="line"><span class="comment">//suppose name of my application is sample, so defining the global namespace or placeholder for my application</span></div><div class="line"><span class="keyword">var</span> sample = &#123;&#125;;</div></pre></td></tr></table></figure>
+<p>Now I can define my UI, models, controllers methods and variables in the corresponding namespace or placeholder to make them more structured. As,</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sample.UI = &#123;&#125;;</div></pre></td></tr></table></figure>
+<p>Now if I want to declare any method or variables, I can place them in corresponding files and assign all the methods/ variables to their parent placeholder.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//UI.js&lt;/span&gt;&lt;/p&gt;</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  sample.UI.xxxx = <span class="function"><span class="keyword">function</span>(<span class="params">_args</span>)</span>&#123;</div><div class="line">    <span class="comment">//write you code you want to use.</span></div><div class="line">  &#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>For knowing more about how to write MVC structure applications with titanium, stay tuned, as I will be back soon with one more blog post for the same</p>
+<h4 id="Passing-parameters-within-successive-windows"><a href="#Passing-parameters-within-successive-windows" class="headerlink" title="Passing parameters within successive windows"></a>Passing parameters within successive windows</h4><p>If we just need to pass parameters/values between 2 successive windows, then it can be done via sending values as a part of window object it self. Like. for example I’m working on a map related stuff and when I click on a button which leads me to the next window which shows some data corresponds to my geolocation position. Then while creating the window element we can pass those values as part of window object itself. As:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// window1.js</span></div><div class="line">.........</div><div class="line">var button = Ti.UI.createButton(&#123;</div><div class="line">  <span class="attr">label</span>: <span class="string">"button1"</span>,</div><div class="line">  <span class="attr">height</span>: <span class="string">"20dp"</span>,</div><div class="line">  <span class="attr">width</span>: <span class="string">"100dp"</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">button.addEventListener(<span class="string">"touchstart"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> window2 = Ti.UI.createWindow(&#123;<span class="attr">url</span>:<span class="string">"window2.js"</span>&#125;);</div><div class="line">  window2.sample_value = <span class="string">"xxxxxx"</span>;</div><div class="line">  Ti.UI.currentTab.open(window2, &#123;<span class="attr">animated</span>:<span class="literal">true</span>&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//windows2.js</span></div><div class="line"><span class="keyword">var</span> <span class="built_in">window</span> = Ti.UI.currentWindow;</div><div class="line">Ti.API.info(<span class="built_in">window</span>.sample_value);</div><div class="line"><span class="comment">//this will return "xxxxxx" as output;</span></div></pre></td></tr></table></figure>
+<p>These are the few ways of passing variables globally which I used till now. For any query Contact me anytime, or reply back.</p>
+
+	
+	</div>
+  <a type="button" href="/2011/12/09/titanium-passing-parameters-between-windows-how-to-make-things-global/#more" class="btn btn-default more">Leia Mais</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2011/02/16/assets-database-hosting-on-amazons3/" >Assets &amp; Database hosting on Amazon/S3</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2011-02-16  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h2 id="Assets-Hosting"><a href="#Assets-Hosting" class="headerlink" title="Assets Hosting"></a>Assets Hosting</h2><p>Lately I was working on a project, highly data driven. Its a movie social network, means there are lots of assets, Photos, Audios &amp; videos. Thats why we should keep continuous backup for our data on some 3rd party provider or somewhere else, which is easier to manage. We are using Amazon::S3 module for our assets and database backup.</p>
+<h3 id="Database-Backup"><a href="#Database-Backup" class="headerlink" title="Database Backup"></a>Database Backup</h3><p>For database backup on S3 we used a ruby gem named “mysql_s3_backup”, a simple backup script for mysql and s3 with incremental backups. Before starting the backups, Create a YAML config file:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="attr">mysql:</span></div><div class="line">  <span class="comment"># Database name to backup</span></div><div class="line"><span class="attr">  database:</span> xyz_development</div><div class="line">  <span class="comment"># Mysql user and password to execute commands</span></div><div class="line"><span class="attr">  user:</span> dbuser</div><div class="line"><span class="attr">  password:</span> paswword</div><div class="line">  <span class="comment"># Path to mysql binaries, like mysql, mysqldump (optional)</span></div><div class="line"><span class="attr">  bin_path:</span> /usr/bin/</div><div class="line">  <span class="comment"># Path to the binary logs, should match the bin_log option in your my.cnf</span></div><div class="line"><span class="attr">  bin_log:</span> /var/lib/mysql/binlog/mysql-bin</div><div class="line"><span class="attr">s3:</span></div><div class="line">  <span class="comment"># S3 bucket name to backup to</span></div><div class="line"><span class="attr">  bucket:</span> bucketname</div><div class="line">  <span class="comment"># S3 credentials</span></div><div class="line"><span class="attr">  access_key_id:</span> XXXXXXXXXXXXXXX</div><div class="line"><span class="attr">  secret_access_key:</span> XXXXXXXXXXXXXXXXXXXXXX</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="string">"Create a full backup:</span></div><div class="line">mysql_s3_backup -c=your_config.yml full</div><div class="line">"Create an incremental backup:</div><div class="line">mysql_s3_backup -c=your_config.yml inc</div><div class="line"><span class="string">"Restore the latest backup (applying incremental backups):</span></div><div class="line">mysql_s3_backup -c=your_config.yml restore</div><div class="line">"Restore a specific backup (NOT applying incremental backups):</div><div class="line">mysql_s3_backup -c=your_config.yml restore 20091126112233</div></pre></td></tr></table></figure>
+<p>We were planning to just keep backup for last 5 copies of the database. So, I did a tweak in the code, and written one wrapper class over the GEM for storing only last 5 backups [in case of full backups only].</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'mysql_s3_backup'</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MysqlS3Dumper</span>    </span></div><div class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:config</span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">MysqlS3Backup::Backup</span></span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">full</span><span class="params">(name=make_new_name)</span></span></div><div class="line">      lock <span class="keyword">do</span></div><div class="line">        <span class="comment"># When the full backup runs it delete any binary log files that might already exist</span></div><div class="line">        <span class="comment"># in the bucket. Otherwise the restore will try to restore them even though they’re</span></div><div class="line">        <span class="comment"># older than the full backup.</span></div><div class="line">        @bucket.delete_all @bin_log_prefix</div><div class="line">        with_temp_file <span class="keyword">do</span> <span class="params">|file|</span></div><div class="line">          puts file</div><div class="line">          @mysql.dump(file)</div><div class="line">          @bucket.store(dump_file_name(name), file)</div><div class="line">          @bucket.copy(dump_file_name(name), dump_file_name(<span class="string">"latest"</span>))</div><div class="line">          @bucket.keep_last_five</div><div class="line">        <span class="keyword">end</span></div><div class="line">      <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">MysqlS3Backup::Bucket</span></span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">keep_last_five</span></span></div><div class="line">      puts @name</div><div class="line">      puts <span class="string">"coming to bucket"</span></div><div class="line">      all_backups = AWS::S3::Bucket.objects(@name)</div><div class="line">      <span class="keyword">while</span> all_backups.count &amp;gt; <span class="number">6</span></div><div class="line">        AWS::S3::Bucket.objects(@name).first.delete</div><div class="line">        all_backups = AWS::S3::Bucket.objects(@name)</div><div class="line">      <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span></span></div><div class="line">    @config = MysqlS3Backup::Config.from_yaml_file(File.dirname(__FILE_<span class="number">_</span>) + <span class="string">"/../config/s3_mysql.yml"</span>)</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="Assets-Backup"><a href="#Assets-Backup" class="headerlink" title="Assets Backup"></a>Assets Backup</h3><p>For assets backup we use S3Backup ruby gem. S3Backup, is a backup tool to local directory to Amazon S3. It uploads local directory to Amazon S3 with compression. If directories isn’t modified after prior backup,those aren’t upload. It can be Cryptnize upload files if password and salt are configured. To use remotebackup,you should prepare backup configuration file by yaml such below:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="attr">bucket:</span> <span class="string">"bucket name"</span></div><div class="line"><span class="attr">directories:</span></div><div class="line"><span class="bullet">  -</span> <span class="string">"absolute path to directory for backup/restore"</span></div><div class="line"><span class="bullet">  -</span> <span class="string">"iterate directory as you like"</span></div><div class="line"><span class="attr">access_key_id:</span> <span class="string">'Amazon access_key_id'</span></div><div class="line"><span class="attr">secret_access_key:</span> <span class="string">'Amazon secret_access_key'</span></div><div class="line"><span class="attr">password:</span> <span class="string">'password for aes. (optional)'</span></div><div class="line"><span class="attr">salt:</span> <span class="string">'HexString(16 length) (must when password is specified)'</span></div><div class="line"><span class="attr">buffer_size:</span> <span class="string">'number of byte max 50000000000 (optional default 32000000)'</span></div><div class="line"><span class="attr">max_retry_count:</span> <span class="string">'number of retry of post if post failed.(optional default 10)'</span></div><div class="line"><span class="attr">proxy_host:</span> proxy host address if you use proxy.</div><div class="line"><span class="attr">proxy_port:</span> proxy port if you use proxy.</div><div class="line"><span class="attr">proxy_user:</span> login name for proxy server if you use proxy.</div><div class="line"><span class="attr">proxy_password:</span> login password for proxy server if you use proxy.</div><div class="line"><span class="attr">log_level:</span> <span class="string">'output log level. value is debug or info or warn or error(optional default info)'</span></div><div class="line"><span class="attr">temporary:</span> <span class="string">'temporary directory path. default(/tmp)</span></div></pre></td></tr></table></figure>
+<ul>
+<li>If directories isn’t specified when restore, it restores all directories in bucket.</li>
+</ul>
+<h4 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h4><p><strong>backup</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">s3backup [<span class="_">-f</span> configuration file] [-v verbose message] [<span class="_">-l</span> path <span class="keyword">for</span> <span class="built_in">log</span>] [-h <span class="built_in">help</span>]</div><div class="line">configuration file  path to file written above contents. default is ./backup.yml</div><div class="line">verbose             display directory tree and difference of anterior backup</div><div class="line">path <span class="keyword">for</span> <span class="built_in">log</span>        defaut starndard output.</div><div class="line"><span class="built_in">help</span>                <span class="built_in">help</span> message</div></pre></td></tr></table></figure>
+<p><strong>restore</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">s3backup -r [<span class="_">-f</span> configuration file] [-v verbose message] [<span class="_">-l</span> path <span class="keyword">for</span> <span class="built_in">log</span>] [-o output dir] [-h <span class="built_in">help</span>]</div><div class="line">configuration file  path to file written above contents. default is ./backup.yml</div><div class="line">verbose             display directory tree and difference of anterior backup</div><div class="line">path <span class="keyword">for</span> <span class="built_in">log</span>        defaut starndard output.</div><div class="line">output dir          path to directory <span class="keyword">for</span> restore directory. defaut is .</div><div class="line"><span class="built_in">help</span>                <span class="built_in">help</span> message</div></pre></td></tr></table></figure>
+
+	
+	</div>
+  <a type="button" href="/2011/02/16/assets-database-hosting-on-amazons3/#more" class="btn btn-default more">Leia Mais</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2010/10/21/imdbcelebrity-a-new-rubygem-for-parsing-celebritydata-from-www-imdb-com/" >ImdbCelebrity - A new rubygem for parsing celebritydata from www.imdb.com</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2010-10-21  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>Last week I was working on my scrapper for getting Imdb Celebrity data for some specific purpose. Then, I searched for some available plugin or gem for the same. More surprisingly I was not able to find something what I’m looking for. Then, one idea stuck in my mind, why not create one of my own. Then I started working on this small rubygem named “imdb_celebrity”. You can see the public repository of the gem on github <a href="http://github.com/sandeepkrao/imdb_celebrity" target="_blank" rel="external">imdb celebrity</a>. Also gem is hosted on <a href="http://rubygems.org/gems/imdb_celebrity/" target="_blank" rel="external">Gemcutter</a> as well.</p>
+<p>Imdb_celebrity is a ruby-gem which is used for scrapping celebrity pages from <a href="http://www.imdb.com" target="_blank" rel="external">imdb.com</a> . You can install imdb_celebrity as</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install imdb_celebrity</div></pre></td></tr></table></figure>
+<p>With current initial release we can search a celebrity with name or we can fetch content for a celebrity with given IMDB id or/and name, by specifying which parser we want to use. Right now we support Hpricot and Nokogiri as parser classes.</p>
+<h3 id="Usages"><a href="#Usages" class="headerlink" title="Usages"></a>Usages</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'imdb_celebrity'</span></div><div class="line"><span class="comment"># searching a celebrity</span></div><div class="line">imdb_celebs = ImdbCelebrity::Search.new(<span class="string">"Brad Pitt"</span>)</div><div class="line">imdb_celebs.celebrities</div><div class="line"><span class="comment"># this will return array of celebrity objects.</span></div><div class="line"><span class="comment"># Also you can define the ParserClass which u wanna use [ right now you have choice of using either Nokogiri or Hpricot], as</span></div><div class="line">imdb_celebs = ImdbCelebrity::Search.new(<span class="string">"Brad Pitt"</span>, <span class="string">"NokogiriParser"</span>)</div><div class="line"><span class="comment"># by default it will be HpricotParser</span></div><div class="line">imdb_celebs.celebrities</div><div class="line"><span class="comment"># Fetching data for celebrity</span></div><div class="line">celeb = ImdbCelebrity::Celebrity.new(<span class="string">"0000093"</span>, <span class="string">"brad pitt"</span>)</div><div class="line"><span class="comment"># give 7 digit imdbid number</span></div><div class="line">celeb.parser</div><div class="line"><span class="comment"># =&gt; it will give you the type of parser class it using</span></div><div class="line">celeb.public_methods(<span class="literal">false</span>)</div><div class="line"><span class="comment"># =&gt; will give you the public methods of ImdbCelebrity::Celebrity class only</span></div><div class="line">celeb.to_s</div><div class="line"><span class="comment"># =&gt; will return an array of celebrity data items containing name, real_name, biography, nationality, height, url.</span></div></pre></td></tr></table></figure>
+<h3 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3><ul>
+<li>Hpricot gem should be installed.</li>
+<li>Nokogiri gem should be installed.</li>
+</ul>
+
+	
+	</div>
+  <a type="button" href="/2010/10/21/imdbcelebrity-a-new-rubygem-for-parsing-celebritydata-from-www-imdb-com/#more" class="btn btn-default more">Leia Mais</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2010/09/08/railscasts-crawler-rubyscript/" >RailsCast&#39;s Crawler - RubyScript</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2010-09-08  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>First of all thanks to <a href="http://railscasts.com/" target="_blank" rel="external">RyanBates</a> for his valuable contribution towards the rails community with those short and easy-to-understand railscast videos. From Past few months I continuously watching those videos. Yesterday while downloading one of those videos, I realize rather than downloading them when its needed, it would be better to write some short script which will do that for me. After looking for some already existing ruby scripts on internet, I ended up writing my own.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'hpricot'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'open-uri'</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GetRailsCasts</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span></span></div><div class="line">    @host = <span class="string">"http://railscasts.com/episodes/"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">start</span></span></div><div class="line">    <span class="number">1</span>.upto(<span class="number">229</span>)&#123; <span class="params">|eps|</span></div><div class="line">      eps_doc = Hpricot(open(<span class="string">"<span class="subst">#&#123;@host&#125;</span><span class="subst">#&#123;eps&#125;</span>"</span>)) <span class="keyword">rescue</span> <span class="literal">nil</span></div><div class="line">      <span class="keyword">if</span> eps_doc</div><div class="line">        <span class="comment"># cd to the folder where u want to store the rails-cast videos</span></div><div class="line">        <span class="string">`cd /Users/sandy/railscasts; wget <span class="subst">#&#123;(eps_doc/<span class="string">".download/a"</span>).first[<span class="symbol">:href</span>]&#125;</span>`</span></div><div class="line">      <span class="keyword">end</span></div><div class="line">    &#125;</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>Comment are most welcome</p>
+
+	
+	</div>
+  <a type="button" href="/2010/09/08/railscasts-crawler-rubyscript/#more" class="btn btn-default more">Leia Mais</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2010/08/19/enhanced-rails-script-console/" >Enhancing script/console</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2010-08-19  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>I Used Rails <code>rails console</code> a lot for debugging my rails applications. Every time when I started debugging something, I have to keep my console log[*.log] file to see what corresponding queries being generated to carried out the result I desired.</p>
+<p>I found a better solution for that. I enhanced my <code>rails console</code>, which enabled on-screen query logging for my rails application. I made a small change to <code>#{RAILS_ROOT}/script/console.rb</code> file, which it will look to load any additional ruby file resides in <code>#{RAILS_ROOT}/console_script/</code> if available.</p>
+<p>I have also included the script I wanted to load in the first place, I find it quite handy to be able to see what kind of queries my commands are generating.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#updates /script/console.rb</span></div><div class="line"></div><div class="line">LOAD_HOOK_DIRECTORY = <span class="string">"<span class="subst">#&#123;RAILS_ROOT&#125;</span>/console_scripts"</span></div><div class="line">Find.find( LOAD_HOOK_DIRECTORY ) <span class="keyword">do</span> <span class="params">|filename|</span></div><div class="line">  <span class="keyword">if</span> filename =~ <span class="regexp">/\.rb$/</span></div><div class="line">    puts <span class="string">"Adding <span class="subst">#&#123;filename&#125;</span> to load-path"</span></div><div class="line">    libs « <span class="string">" -r <span class="subst">#&#123;filename&#125;</span>"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#add sql_log.rb file to /console_script/</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">log_to</span><span class="params">(stream=STDOUT, colorize=<span class="literal">true</span>)</span></span></div><div class="line">  ActiveRecord::Base.logger = Logger.new(stream)</div><div class="line">  ActiveRecord::Base.clear_active_connections!</div><div class="line">  ActiveRecord::Base.colorize_logging = colorize</div><div class="line"><span class="keyword">end</span></div><div class="line">log_to</div></pre></td></tr></table></figure>
+
+	
+	</div>
+  <a type="button" href="/2010/08/19/enhanced-rails-script-console/#more" class="btn btn-default more">Leia Mais</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2010/08/18/email-providers-improved-black-book/" >Black Book Web mail import gem-add mail provider</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2010-08-18  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>Black book is one the easiest way to add web email importing feature in your application. Recently I am working on a Social network cum movie portal site. By default, black book provides support for gmail, yahoo, hotmail, AOL and csv. But as per my requirement I have to add 20-30 mail providers from different countries. I started with <a href="http://www.free.fr/" target="_blank" rel="external">free</a></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">"blackbook"</span></div><div class="line"><span class="keyword">require</span> <span class="string">"hpricot"</span></div><div class="line"><span class="keyword">require</span> <span class="string">'blackbook/importer/page_scraper'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Free</span> &lt; Blackbook::Importer::<span class="title">PageScraper</span></span></div><div class="line">  <span class="comment"># your code</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="How-to-login-into-the-users’-account-for-which-we-are-fetching-contacts"><a href="#How-to-login-into-the-users’-account-for-which-we-are-fetching-contacts" class="headerlink" title="How to login into the users’ account for which we are fetching contacts."></a>How to login into the users’ account for which we are fetching contacts.</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span></span></div><div class="line">  page = agent.get(<span class="string">'http://imp.free.fr/'</span>)</div><div class="line">  form = page.form_with(<span class="symbol">:name</span> =&gt; <span class="string">"implogin"</span>)</div><div class="line">  form.imapuser = options[<span class="symbol">:username</span>]</div><div class="line">  form.fields[<span class="number">4</span>].value = options[<span class="symbol">:password</span>]</div><div class="line">  page = agent.submit(form,form.buttons.first)</div><div class="line">  raise( Blackbook::BadCredentialsError, <span class="string">"That username and password was not accepted. Please check them and try again."</span> ) <span class="keyword">if</span> page.body =~ <span class="regexp">/Username and password do not match/</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">scrape_contacts</span></span></div><div class="line">  unless agent.cookies.find&#123;<span class="params">|c|</span> c.name == <span class="string">"Horde"</span>&#125;</div><div class="line">    raise( Blackbook::BadCredentialsError, <span class="string">"Must be authenticated to access contacts."</span> )</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  page = agent.get(<span class="string">'http://imp.free.fr/horde/turba/browse.php'</span>)</div><div class="line">  contact_rows = page.search(<span class="string">"form[@name=contacts]"</span>)</div><div class="line">  data = Hpricot(contact_rows.to_s)</div><div class="line">  data = (data/<span class="string">"table[1]"</span>)/<span class="string">".listitem"</span></div><div class="line">  data.collect <span class="keyword">do</span> <span class="params">|row|</span></div><div class="line">    &#123; </div><div class="line">      <span class="symbol">:name</span>  =&gt; (row/<span class="string">"a"</span>).first.inner_text,</div><div class="line">      <span class="symbol">:email</span> =&gt; (row/<span class="string">"a"</span>).last.inner_text</div><div class="line">    &#125;</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>Points to keep in mind</p>
+<ul>
+<li>scraping contacts differs from one mail provider to another.</li>
+<li>dependencies- mechanize, faster-csv for page scraping</li>
+<li>we can extend  the mail provider within the black book gem as well as with in your application [no need to patch gem]</li>
+</ul>
+
+	
+	</div>
+  <a type="button" href="/2010/08/18/email-providers-improved-black-book/#more" class="btn btn-default more">Leia Mais</a>
+</div>
+
+		
+
+		</div>
+
+		<!-- pagination -->
+		<div>
+  		<center>
+		<div class="pagination">
+
+   
+    
+           <a type="button" class="btn btn-default disabled"><i class="fa fa-arrow-circle-o-left"></i>Anterior</a>
+        
+
+        <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+ 
+       <a href="/page/2/" type="button" class="btn btn-default ">Próximo<i class="fa fa-arrow-circle-o-right"></i></a>     
+        
+
+  
+</div>
+
+  		</center>
+		</div>
+
+		
+		
+	</div> <!-- col-md-9 -->
+
+	
+		<div class="col-md-3">
+	<div id="sidebar">
+	
+			
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Busca" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+		
+			
+	<div class="widget">
+		<h4>Categorias</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/Android/">Android<span>1</span></a></li>
+		
+			<li><a href="/categories/Android/titanium/">titanium<span>1</span></a></li>
+		
+			<li><a href="/categories/vim/">vim<span>1</span></a></li>
+		
+		</ul>
+	</div>
+
+		
+			
+	<div class="widget">
+		<h4>Tag Cloud</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/spree-extend/">spree extend<span>1</span></a></li>
+		
+			<li><a href="/tags/hpricot/">hpricot<span>1</span></a></li>
+		
+			<li><a href="/tags/imdb/">imdb<span>1</span></a></li>
+		
+			<li><a href="/tags/rails/">rails<span>5</span></a></li>
+		
+			<li><a href="/tags/crawler/">crawler<span>1</span></a></li>
+		
+			<li><a href="/tags/ruby/">ruby<span>5</span></a></li>
+		
+			<li><a href="/tags/titanium/">titanium<span>1</span></a></li>
+		
+			<li><a href="/tags/black-book/">black-book<span>1</span></a></li>
+		
+			<li><a href="/tags/open-url/">open-url<span>1</span></a></li>
+		
+			<li><a href="/tags/ryan-bates/">ryan bates<span>1</span></a></li>
+		
+			<li><a href="/tags/GUI/">GUI<span>1</span></a></li>
+		
+			<li><a href="/tags/themes/">themes<span>1</span></a></li>
+		
+			<li><a href="/tags/vim/">vim<span>1</span></a></li>
+		
+			<li><a href="/tags/activerecord/">activerecord<span>1</span></a></li>
+		
+			<li><a href="/tags/assets-hosting/">assets hosting<span>1</span></a></li>
+		
+			<li><a href="/tags/railscasts/">railscasts<span>1</span></a></li>
+		
+			<li><a href="/tags/rugygems/">rugygems<span>1</span></a></li>
+		
+			<li><a href="/tags/spree/">spree<span>2</span></a></li>
+		
+			<li><a href="/tags/S3/">S3<span>1</span></a></li>
+		
+			<li><a href="/tags/rubygems/">rubygems<span>1</span></a></li>
+		
+		 
+		</ul>
+	</div>
+
+
+		
+			
+<div class="widget">
+  <h4>Posts recentes</h4>
+  <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/01/18/How-to-create-new-vim-colorscheme/" ><i class="fa fa-file-o"></i>VimLeaning: How to create v...</a>
+      </li>
+    
+      <li>
+        <a href="/2012/07/19/spree-extend-updating-eligibility-criteria-for-any-existing-promotion-rule/" ><i class="fa fa-file-o"></i>Spree Extend: Updating elig...</a>
+      </li>
+    
+      <li>
+        <a href="/2012/07/12/spree-extend-creating-custom-promotion-rule/" ><i class="fa fa-file-o"></i>Spree Extend: Creating Cust...</a>
+      </li>
+    
+      <li>
+        <a href="/2011/12/12/generating-dashboard-like-layout-for-android-with-titanium/" ><i class="fa fa-file-o"></i>Generating Dashboard like l...</a>
+      </li>
+    
+      <li>
+        <a href="/2011/12/09/titanium-passing-parameters-between-windows-how-to-make-things-global/" ><i class="fa fa-file-o"></i>Titanium : Passing paramete...</a>
+      </li>
+    
+  </ul>
+</div>
+
+		
+			
+<div class="widget">
+	<h4>Links</h4>
+	<ul class="blogroll list-unstyled">
+	
+		<li><i class="fa fa-github"></i><a href="https://github.com/wzpan/hexo-theme-freemind" title="Freemind's Github repository." target="_blank"]);">Freemind</a></li>
+	
+		<li><i class="fa fa-github"></i><a href="https://github.com/kristopolous/BOOTSTRA.386" title="BOOTSTRA.386's Github repository." target="_blank"]);">BOOTSTRA.386</a></li>
+	
+		<li><i class="fa fa-github"></i><a href="https://github.com/blackshow/hexo-theme-freemind.386" title="Freemind.386's Github repository." target="_blank"]);">Freemind.386</a></li>
+	
+		<li><i class="fa fa-github"></i><a href="http://www.github.com/blackshow" title="My Github account." target="_blank"]);">My Github</a></li>
+	
+	</ul>
+</div>
+
+
+		
+	</div> <!-- sidebar -->
+</div> <!-- col-md-3 -->
+
+	
+	
+</div> <!-- row-fluid -->
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Sandeep Kumar
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

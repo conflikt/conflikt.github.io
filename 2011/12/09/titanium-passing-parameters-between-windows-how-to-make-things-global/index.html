@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Titanium : Passing parameters between windows [How to make things global] | Sandeep Kumar</title>
+  <meta name="author" content="Sandeep Kumar">
+  
+  <meta name="description" content="While working on any titanium application, one of the common possibilities is to use some variables/constants across the windows. In Titanium, windows">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Titanium : Passing parameters between windows [How to make things global]"/>
+  <meta property="og:site_name" content="Sandeep Kumar"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Sandeep Kumar</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Titanium : Passing parameters between windows [How to make things global]</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>While working on any titanium application, one of the common possibilities is to use some variables/constants across the windows. In Titanium, windows use to have their on context. That means the variables/values available on one window are not available on the others linked windows by default. So, if we are required to pass parameters between windows,  there are many different ways to achieve this. So, choosing a perfect approach for passing variables/parameters within windows depends on the requirement we are having. In our last project we had used few different approaches as per our requirements. Few of them are :</p>
+<h4 id="Ti-App-Properties"><a href="#Ti-App-Properties" class="headerlink" title="Ti.App.Properties:"></a>Ti.App.Properties:</h4><p>There are few cases where we need to store values to be used everywhere in the application, and we want to retain those values even when application is not-running/ in-background. The App Properties module is used for storing application related property/value pairs which persist beyond application sessions.</p>
+<p>We can set the property/value pair as:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Titanium.App.Properties.setString(<span class="string">"my_prop"</span>,<span class="string">"cool"</span>);</div></pre></td></tr></table></figure>
+<p>Now, as property/value pair is set. Now I can simply retrieve that value where I want in the application as:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> value = Titanium.App.Properties.getString(<span class="string">"my_prop"</span>);</div></pre></td></tr></table></figure>
+<p>While setting properties in Ti.App.Properties, we have to make sure few things:</p>
+<ul>
+<li>we are actually making things globally available, means whatever values we are storing, should not conflict with already existing global titanium constants, otherwise functionality will suffer. For more information, check Titanium documentation at <a href="https://developer.appcelerator.com/apidoc/mobile/1.0/Titanium.App.Properties" target="_blank" rel="external">Titanium.App.Properties</a></li>
+</ul>
+<h4 id="Ti-App"><a href="#Ti-App" class="headerlink" title="Ti.App:"></a>Ti.App:</h4><p>There are cases, when we need few values to be available all over the application, but when we close the application, those values should not be available any-more. For example,  while working on an application I need to access the current locale for the device for different purposes. But when I closes the application, I don’t need that value to persist as use can change the locale in-between as well. So better to make request to get these kind of values when app initializes and persist those values throughout the application session.</p>
+<p>We can declare methods and variables to be globally available with Ti.App as:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Ti.App.sample_variable = <span class="string">"xxxxxx"</span>;</div><div class="line">Ti.App.sample_function = <span class="function"><span class="keyword">function</span>(<span class="params">_args</span>)</span>&#123; <span class="comment">//your code for the function &#125;;</span></div></pre></td></tr></table></figure>
+<p>Then we can use this variable/method anywhere in our application. It will be available in the application session.</p>
+<h4 id="App-Level-Global-Declaration"><a href="#App-Level-Global-Declaration" class="headerlink" title="App Level Global Declaration"></a>App Level Global Declaration</h4><p>For past weeks I was wondering about what are the best ways of writing titanium javascript code to make it more generic, reusable and more modular. Tweetanium, the sample application build by titanium/appcelerator team to help people, posses a new approach for design/creation of titanium based applications. Approach is to maintain an Application Level NAMESPACE and write each and every single peace of code wither to that namespace or sub-namespaces to that. e.g.</p>
+<p>In app.js of your application,</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//app.js</span></div><div class="line"><span class="comment">//suppose name of my application is sample, so defining the global namespace or placeholder for my application</span></div><div class="line"><span class="keyword">var</span> sample = &#123;&#125;;</div></pre></td></tr></table></figure>
+<p>Now I can define my UI, models, controllers methods and variables in the corresponding namespace or placeholder to make them more structured. As,</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sample.UI = &#123;&#125;;</div></pre></td></tr></table></figure>
+<p>Now if I want to declare any method or variables, I can place them in corresponding files and assign all the methods/ variables to their parent placeholder.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//UI.js&lt;/span&gt;&lt;/p&gt;</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  sample.UI.xxxx = <span class="function"><span class="keyword">function</span>(<span class="params">_args</span>)</span>&#123;</div><div class="line">    <span class="comment">//write you code you want to use.</span></div><div class="line">  &#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>For knowing more about how to write MVC structure applications with titanium, stay tuned, as I will be back soon with one more blog post for the same</p>
+<h4 id="Passing-parameters-within-successive-windows"><a href="#Passing-parameters-within-successive-windows" class="headerlink" title="Passing parameters within successive windows"></a>Passing parameters within successive windows</h4><p>If we just need to pass parameters/values between 2 successive windows, then it can be done via sending values as a part of window object it self. Like. for example I’m working on a map related stuff and when I click on a button which leads me to the next window which shows some data corresponds to my geolocation position. Then while creating the window element we can pass those values as part of window object itself. As:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// window1.js</span></div><div class="line">.........</div><div class="line">var button = Ti.UI.createButton(&#123;</div><div class="line">  <span class="attr">label</span>: <span class="string">"button1"</span>,</div><div class="line">  <span class="attr">height</span>: <span class="string">"20dp"</span>,</div><div class="line">  <span class="attr">width</span>: <span class="string">"100dp"</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">button.addEventListener(<span class="string">"touchstart"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> window2 = Ti.UI.createWindow(&#123;<span class="attr">url</span>:<span class="string">"window2.js"</span>&#125;);</div><div class="line">  window2.sample_value = <span class="string">"xxxxxx"</span>;</div><div class="line">  Ti.UI.currentTab.open(window2, &#123;<span class="attr">animated</span>:<span class="literal">true</span>&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//windows2.js</span></div><div class="line"><span class="keyword">var</span> <span class="built_in">window</span> = Ti.UI.currentWindow;</div><div class="line">Ti.API.info(<span class="built_in">window</span>.sample_value);</div><div class="line"><span class="comment">//this will return "xxxxxx" as output;</span></div></pre></td></tr></table></figure>
+<p>These are the few ways of passing variables globally which I used till now. For any query Contact me anytime, or reply back.</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2011/12/12/generating-dashboard-like-layout-for-android-with-titanium/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Anterior</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2011/02/16/assets-database-hosting-on-amazons3/" type="button" class="btn btn-default ">Próximo<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comentários</h2>
+
+    
+    <div id="disqus_thread" class="ds-thread">
+        <script type="text/javascript">
+            /**
+             * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+             */
+                /*
+                 var disqus_config = function () {
+                 this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+                 this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                 };
+                 */
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+
+                s.src = '//sandeepkrao.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
+    </div>
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2011-12-09 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/titanium/">titanium<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'sandeepkrao';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Sandeep Kumar
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

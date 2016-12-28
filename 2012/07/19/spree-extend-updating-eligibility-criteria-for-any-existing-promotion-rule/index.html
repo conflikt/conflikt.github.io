@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Spree Extend: Updating eligibility criteria for any existing promotion rule | Sandeep Kumar</title>
+  <meta name="author" content="Sandeep Kumar">
+  
+  <meta name="description" content="As I mentioned in my last post spree-extend, how to create custom promotion rule(s) while working with Spree based e-Commerece website. Last weekend, ">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Spree Extend: Updating eligibility criteria for any existing promotion rule"/>
+  <meta property="og:site_name" content="Sandeep Kumar"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Sandeep Kumar</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Spree Extend: Updating eligibility criteria for any existing promotion rule</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>As I mentioned in my last post <a href="http://whatpeoplethink.wordpress.com/2012/07/12/spree-extend-creating-custom-promotion-rule/" target="_blank" rel="external">spree-extend</a>, how to create custom promotion rule(s) while working with Spree based e-Commerece website. Last weekend, I faced a situation where I need to update the existing promotion rule to handle some specific condition.</p>
+<h3 id="Scenario"><a href="#Scenario" class="headerlink" title="Scenario"></a>Scenario</h3><p>For example, when I select “Product(s)” spree default rule, it gives us the option to choose products manually or choose by product group and its working as expected. Later, my client told me he wants, when he selects by product_group he can actually select some Taxons/Tags so that only the products belongs to that product_group and has taxon(s) listed there are eligible for this promotion.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>For updating any existing promotion rules in spree there are few generic steps we need to follow,</p>
+<ul>
+<li>Extend the corresponding spree-&gt;promotion-&gt;rules model class. Here, I created a file <code>app/models/promotion/rules/product_decorator.rb</code></li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Promotion::Rules::Product.class_eval <span class="keyword">do</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Create the attribute accessors/ accessibles for new attributes you needed.</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Promotion::Rules::Product.class_eval do</div><div class="line">  has_and_belongs_to_many :taxons, class_name: "::taxon", join_table: "taxons_promotion_rules", foreign_key: "promotion_rule_id"</div><div class="line">  attr_accessible :taxon_ids_string</div><div class="line">  //setter and getter methods</div><div class="line">  def taxon_ids_string</div><div class="line">    self.taxon_ids.join(",")</div><div class="line">  end</div><div class="line">  def taxon_ids_string=(string)</div><div class="line">    self.taxon_ids = string.split(",").map(&amp;:strip)</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<ul>
+<li>update the corresponding View file for the same rule in admin/promotions/rules/_product.html.haml or .erb if you are using erb. Add the required code for handling the same. In My case I added one TokenInput object to get multiple taxons selection. Add code something like this… where-ever you think is more suitable for you.</li>
+</ul>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">%<span class="selector-tag">p</span>&#123;<span class="attr">:class</span>=&gt;<span class="string">"field products_rule_taxons"</span>&#125;</span></div><div class="line"><span class="tag">  %<span class="selector-tag">label</span></span></div><div class="line">    =<span class="ruby"> <span class="string">"Choose Taxons"</span></span></div><div class="line">    =<span class="ruby"> taxon_picker_field <span class="string">"<span class="subst">#&#123;param_prefix&#125;</span>[tag_ids_string]"</span>, promotion_rule.taxon_ids_string</span></div></pre></td></tr></table></figure>
+<p>There are 2 different ways of adding this to view file. One, you can write a decorator and tell before/after which object you want to put this code. Second, you can re-write the complete file and do whatever you need. Upto you.</p>
+<p>Also, <code>taxon_picker_field</code> is a helper method which I created for creating the <code>tokenInput/tokenizer</code> object. Create the <code>AdminBaseHelper</code> decorator file, if not exists and put the following code or something like that,</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Admin::BaseHelper.module_eval <span class="keyword">do</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">taxon_picker_field</span><span class="params">(name, value)</span></span></div><div class="line">    taxons = value == <span class="string">""</span> ?  [] : Taxon.where(<span class="string">"id in ('<span class="subst">#&#123;value&#125;</span>')"</span>)</div><div class="line">    taxon_names_hash = taxons.inject(&#123;&#125;)&#123;<span class="params">|memo,item|</span> memo[item.id] = item.name; memo&#125;</div><div class="line">    <span class="string">%(tag_picker_initializer()</span>;).html_safe</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Update the eligible? and/or eligible_products methods as per your rule updations. Here in my case I just need to change the eligible_products method. Add the following code in <code>app/models/promotion/rules/product_decorator.rb</code></li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">eligible_products</span></span></div><div class="line">  <span class="keyword">if</span> product_group</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.taxons.collect(&amp;amp;<span class="symbol">:products</span>).flatten</div><div class="line">  <span class="keyword">end</span></div><div class="line">  products</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>Or something like that as per your requirements</p>
+<p>And yes, We are good to go and the new rule criteria will be applied from now on-wards. Good luck, In case of any query, feel free to ask here or email me at <a href="mailto:skr.ymca@gmail.com" target="_blank" rel="external">Sandeep Kumar</a></p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2015/01/18/How-to-create-new-vim-colorscheme/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Anterior</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2012/07/12/spree-extend-creating-custom-promotion-rule/" type="button" class="btn btn-default ">Próximo<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comentários</h2>
+
+    
+    <div id="disqus_thread" class="ds-thread">
+        <script type="text/javascript">
+            /**
+             * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+             */
+                /*
+                 var disqus_config = function () {
+                 this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+                 this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                 };
+                 */
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+
+                s.src = '//sandeepkrao.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
+    </div>
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2012-07-19 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/rails/">rails<span>5</span></a></li> <li><a href="/tags/spree/">spree<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'sandeepkrao';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Sandeep Kumar
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

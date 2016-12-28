@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Spree Extend: Creating Custom Promotion Rule | Sandeep Kumar</title>
+  <meta name="author" content="Sandeep Kumar">
+  
+  <meta name="description" content="I’m working on an E-commerce website for sometime now. We are usingi spree as backbone of the project and customizing where and when its required. Spr">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Spree Extend: Creating Custom Promotion Rule"/>
+  <meta property="og:site_name" content="Sandeep Kumar"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Sandeep Kumar</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Spree Extend: Creating Custom Promotion Rule</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>I’m working on an E-commerce website for sometime now. We are usingi <a href="http://spreecommerce.com/" target="_blank" rel="external">spree</a> as backbone of the project and customizing where and when its required. Spree is quite good and fully functioning E-commerce Rails engine which give you base to build a e-commerce website quickly and with lesser efforts.</p>
+<p>One of the main features of any e-commerce website is Promotions/Coupons. Spree also has a built in spree promotion module which is ready to use with predefined rules and adjustment calculators. Being an ADMIN I can define any new promotion rules i.e. first order, user specific, products specific etc. Also I can define the actions like ALL or ANY. You can have a look on spree_promo module at <a href="https://github.com/spree/spree/tree/master/promo" target="_blank" rel="external">spree_promo</a> and see how it works.</p>
+<p>Spree already provides some 4-5 predefined Promotions Rules on the basis of which every order get cross-checked whether some adjustments has to be done or not. Most of the time these rules/calculators are more than enough in general usage, but sometimes we need few very specific CUSTOM rules to be defined. Here I’m going to explain how easy it is to create new spree promotion rules.</p>
+<h4 id="Create-Promotion-Rule"><a href="#Create-Promotion-Rule" class="headerlink" title="Create Promotion Rule"></a>Create Promotion Rule</h4><ol>
+<li>create a model file app/models/spree/promotion/rules/my_custom_promotion.rb</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">module Spree</div><div class="line">  class Promotion::Rules::MyCustomPromotion &amp;lt; PromotionRule</div><div class="line">    // required associations or preferences if any</div><div class="line">    // required attribute accessible if you need to protect some attributes from mass assignment</div><div class="line">    // match polices and operators</div><div class="line">    MATCH_POLICIES = %w(any all) // as per your requirement</div><div class="line">    def eligible?(order, options=&#123;&#125;)</div><div class="line">      // This method is the place where every order is being verified whether its eligible for any promotional discount</div><div class="line">    end</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<ol>
+<li>Add this custom promotion rule to default spree promotion rules list. Write the following code in either <code>application.rb</code> or some initializer</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">initializer <span class="string">"spree.promo.register.promotions.rules"</span> <span class="keyword">do</span> <span class="params">|app|</span></div><div class="line">  app.config.spree.promotions.rules += [Spree::Promotion::Rules::MyCustomPromotion]</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<ol>
+<li>Add the translations for name &amp; description for custom rule as spree use the standard view for all with Translation method <code>t(&#39;name&#39;)</code> or <code>t(&#39;description&#39;)</code>. Write the following code in your <code>config/locales/en.yml</code> (or any other locale file if you are having multilingual products).</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attr">en:</span></div><div class="line"><span class="attr">  promotion_rule_types:</span></div><div class="line"><span class="attr">    product_by_tag:</span></div><div class="line"><span class="attr">      name:</span> Products By MyCustomPromotion</div><div class="line"><span class="attr">      description:</span> Add products from MyCustomPromotion</div></pre></td></tr></table></figure>
+<ol>
+<li>Create the view partial file for the custom promotion rule. Add a file <code>app/admin/promotions/rules/_my_custom_promotion.html.erb</code> or haml or something else depending on the template engine you are using for views. And, restart your application server and you are good to go. Now whenever you are going to edit the Promotion, in the promotions rules list you will see you custom rule also available.</li>
+</ol>
+<ul>
+<li>if you want some custom price adjustments/calculations as well, then you have to create a new calculator. E.g. If I want to define some flat percentage benefit on my custom promotion we have to create <code>app/models/spree/calculator/flat_percentage.rb</code></li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">module Spree</div><div class="line">  class Calculator::FlatPercetange &amp;lt; Calculator</div><div class="line">    // preferences if there are any.</div><div class="line">    // attributes accessibles</div><div class="line">    def compute(object)</div><div class="line">      // main method where we have to compute the adjustments we have to made.</div><div class="line">    end</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>I hope it helped someone. In case of any query, please feel free to ask here or drop me a mail at <a href="mailto:skr.ymca@gmail.com?subject=Re:Creating custom spree promotion rule" target="_blank" rel="external">Sandeep Kumar</a></p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2012/07/19/spree-extend-updating-eligibility-criteria-for-any-existing-promotion-rule/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Anterior</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2011/12/12/generating-dashboard-like-layout-for-android-with-titanium/" type="button" class="btn btn-default ">Próximo<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comentários</h2>
+
+    
+    <div id="disqus_thread" class="ds-thread">
+        <script type="text/javascript">
+            /**
+             * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+             */
+                /*
+                 var disqus_config = function () {
+                 this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+                 this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                 };
+                 */
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+
+                s.src = '//sandeepkrao.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
+    </div>
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2012-07-12 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/rails/">rails<span>5</span></a></li> <li><a href="/tags/spree/">spree<span>2</span></a></li> <li><a href="/tags/spree-extend/">spree extend<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'sandeepkrao';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Sandeep Kumar
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>
