@@ -18,7 +18,8 @@ Vim is one of the popular choice as text editor for power users. One of the most
   Create `~/.vim/colors` folder if not exists already.
   Add the `.vim` colorscheme file to the colors folder.
   Go to vim/mvim and use `colorscheme scheme_name` to use the corresponding colorscheme.
-  To apply the corresponding colorscheme everytime vim/mvim runs, add the `colorscheme scheme_name` to your ~/.vimrc or ~/.vimrc.after or any other config file which loads everytime you runs vim/mvim.
+  To apply the corresponding colorscheme everytime vim/mvim runs, add the `colorscheme scheme_name` 
+  to your ~/.vimrc or ~/.vimrc.after or any other config file which loads everytime you runs vim/mvim.
 ```
 
 A good ColorScheme is the key to work long hours on any editor. Mostly people use one of the existing theme. But when they get more familiar with the structure, insights of vim, they either `customize existing theme` or `create their own`. Here I am going to discuss about how we can create a new vim theme.

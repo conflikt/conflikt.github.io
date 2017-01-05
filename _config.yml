@@ -4,10 +4,9 @@
 
 # Site
 title: Sandeep Kumar
-subtitle: Learn . Experiment . Build . Repeat
-description:
+description: Learn . Experiment . Build . Repeat
 author: Sandeep Kumar
-language: English
+language: en
 timezone: Asia/Calcutta
 
 # URL
@@ -27,7 +26,7 @@ code_dir: downloads/code
 i18n_dir: en
 skip_render:
 
-# Writing
+# writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
@@ -42,6 +41,8 @@ highlight:
   line_number: true
   auto_detect: true
   tab_replace:
+
+excerpt_depth: 1
 
 # Category & Tag
 default_category: uncategorized
@@ -65,7 +66,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: freemind.386 #freemind
+theme: hiero
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

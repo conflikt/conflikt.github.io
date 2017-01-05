@@ -7,8 +7,6 @@ published: true
 date: 2011-02-16
 ---
 
-## Assets Hosting
-
 Lately I was working on a project, highly data driven. Its a movie social network, means there are lots of assets, Photos, Audios & videos. Thats why we should keep continuous backup for our data on some 3rd party provider or somewhere else, which is easier to manage. We are using Amazon::S3 module for our assets and database backup.
 
 ### Database Backup
