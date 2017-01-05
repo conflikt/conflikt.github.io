@@ -1,4 +1,134 @@
-<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Titanium : Passing parameters between windows [How to make things global] | Sandeep Kumar</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Sandeep Kumar</a><span class="subtitle">Learn . Experiment . Build . Repeat</span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>Titanium : Passing parameters between windows [How to make things global]</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2011-12-09</div><div class="post-tags"><a class="post-tag-link" href="/tags/titanium/">titanium</a></div></div></div><article><div class="container post"><p>While working on any titanium application, one of the common possibilities is to use some variables/constants across the windows. In Titanium, windows use to have their on context. That means the variables/values available on one window are not available on the others linked windows by default. So, if we are required to pass parameters between windows,  there are many different ways to achieve this. So, choosing a perfect approach for passing variables/parameters within windows depends on the requirement we are having. In our last project we had used few different approaches as per our requirements. Few of them are :</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>titanium : passing parameters between windows [how to make things global] | Sandeep Kumar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="titanium" />
+  
+  
+  
+  
+    <meta name="360-site-verification" content="[object Object]" />
+  
+  <meta name="description" content="While working on any titanium application, one of the common possibilities is to use some variables/constants across the windows. In Titanium, windows use to have their on context. That means the vari">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Titanium : Passing parameters between windows [How to make things global]">
+<meta property="og:url" content="http://r3bo0t.github.io/2011/12/09/titanium-passing-parameters-between-windows-how-to-make-things-global/index.html">
+<meta property="og:site_name" content="Sandeep Kumar">
+<meta property="og:description" content="While working on any titanium application, one of the common possibilities is to use some variables/constants across the windows. In Titanium, windows use to have their on context. That means the vari">
+<meta property="og:updated_time" content="2016-12-21T08:16:43.557Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Titanium : Passing parameters between windows [How to make things global]">
+<meta name="twitter:description" content="While working on any titanium application, one of the common possibilities is to use some variables/constants across the windows. In Titanium, windows use to have their on context. That means the vari">
+  
+    <link rel="alternate" href="/atom.xml" title="Sandeep Kumar" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+<body>
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            <a href="/" title="Sandeep Kumar" rel="home">
+              Sandeep Kumar</a>
+          </h1>
+          <div class="site-description">Learn . Experiment . Build . Repeat</div>
+
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div style="background:#fff;width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;">
+        <img width="100%" alt="Hike News" src="/css/images/pose.jpg">
+      </div>
+
+  </div>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-titanium-passing-parameters-between-windows-how-to-make-things-global" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Titanium : Passing parameters between windows [How to make things global]
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2011/12/09/titanium-passing-parameters-between-windows-how-to-make-things-global/" class="article-date">
+	  <time datetime="2011-12-08T18:30:00.000Z" itemprop="datePublished">December 9, 2011</time>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>While working on any titanium application, one of the common possibilities is to use some variables/constants across the windows. In Titanium, windows use to have their on context. That means the variables/values available on one window are not available on the others linked windows by default. So, if we are required to pass parameters between windows,  there are many different ways to achieve this. So, choosing a perfect approach for passing variables/parameters within windows depends on the requirement we are having. In our last project we had used few different approaches as per our requirements. Few of them are :</p>
 <h4 id="Ti-App-Properties"><a href="#Ti-App-Properties" class="headerlink" title="Ti.App.Properties:"></a>Ti.App.Properties:</h4><p>There are few cases where we need to store values to be used everywhere in the application, and we want to retain those values even when application is not-running/ in-background. The App Properties module is used for storing application related property/value pairs which persist beyond application sessions.</p>
 <p>We can set the property/value pair as:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Titanium.App.Properties.setString(<span class="string">"my_prop"</span>,<span class="string">"cool"</span>);</div></pre></td></tr></table></figure>
@@ -24,7 +154,193 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// window1.js</span></div><div class="line">.........</div><div class="line">var button = Ti.UI.createButton(&#123;</div><div class="line">  <span class="attr">label</span>: <span class="string">"button1"</span>,</div><div class="line">  <span class="attr">height</span>: <span class="string">"20dp"</span>,</div><div class="line">  <span class="attr">width</span>: <span class="string">"100dp"</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">button.addEventListener(<span class="string">"touchstart"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> window2 = Ti.UI.createWindow(&#123;<span class="attr">url</span>:<span class="string">"window2.js"</span>&#125;);</div><div class="line">  window2.sample_value = <span class="string">"xxxxxx"</span>;</div><div class="line">  Ti.UI.currentTab.open(window2, &#123;<span class="attr">animated</span>:<span class="literal">true</span>&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//windows2.js</span></div><div class="line"><span class="keyword">var</span> <span class="built_in">window</span> = Ti.UI.currentWindow;</div><div class="line">Ti.API.info(<span class="built_in">window</span>.sample_value);</div><div class="line"><span class="comment">//this will return "xxxxxx" as output;</span></div></pre></td></tr></table></figure>
 <p>These are the few ways of passing variables globally which I used till now. For any query Contact me anytime, or reply back.</p>
-</div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">Sandeep Kumar</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
-    $(".fancybox").fancybox();
-});
-</script></body></html>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/titanium/">titanium</a></li></ul>
+
+      
+        
+      <section id="comments" class="comment">
+        <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+        </section>
+
+        <script type="text/javascript">
+        var disqus_shortname = 'sandeepkrao';
+      (function(){
+       var dsq = document.createElement('script');
+       dsq.type = 'text/javascript';
+       dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       }());
+      (function(){
+       var dsq = document.createElement('script');
+       dsq.type = 'text/javascript';
+       dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       }());
+      </script>
+
+        
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2011/12/12/generating-dashboard-like-layout-for-android-with-titanium/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Generating Dashboard like layout for android with Titanium
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2011/02/16/assets-database-hosting-on-amazons3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Assets &amp; Database hosting on Amazon/S3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ti-App-Properties"><span class="toc-number">1.</span> <span class="toc-text">Ti.App.Properties:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ti-App"><span class="toc-number">2.</span> <span class="toc-text">Ti.App:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#App-Level-Global-Declaration"><span class="toc-number">3.</span> <span class="toc-text">App Level Global Declaration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Passing-parameters-within-successive-windows"><span class="toc-number">4.</span> <span class="toc-text">Passing parameters within successive windows</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2017 Sandeep Kumar All Rights Reserved.
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+<script>
+  var disqus_shortname = 'sandeepkrao';
+  
+  var disqus_url = 'http://r3bo0t.github.io/2011/12/09/titanium-passing-parameters-between-windows-how-to-make-things-global/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+  
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+</body>
+</html>
