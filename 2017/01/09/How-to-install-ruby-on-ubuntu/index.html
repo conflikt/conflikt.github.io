@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>rails activerecord – has_and_belongs_to_many &amp; duplicate entry error | Sandeep Kumar</title>
+  <title>how to manage multiple ruby versions on ubuntu | Sandeep Kumar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="rubyrailsactiverecord" />
+  <meta name="keywords" content="ubuntulinuxrubyrbenv" />
   
   
   
   
     <meta name="360-site-verification" content="[object Object]" />
   
-  <meta name="description" content="Scenario">
+  <meta name="description" content="As compare to windows, where you can get one click installer, ubuntu follows different approach to install ruby. In case you are just planning to work on single version of ruby and not going back and">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rails ActiveRecord – has_and_belongs_to_many & Duplicate entry Error">
-<meta property="og:url" content="http://r3bo0t.github.io/2010/02/05/ar-duplicate-entry-error/index.html">
+<meta property="og:title" content="How to manage multiple ruby versions on ubuntu">
+<meta property="og:url" content="http://r3bo0t.github.io/2017/01/09/How-to-install-ruby-on-ubuntu/index.html">
 <meta property="og:site_name" content="Sandeep Kumar">
-<meta property="og:description" content="Scenario">
-<meta property="og:updated_time" content="2016-12-28T11:34:03.836Z">
+<meta property="og:description" content="As compare to windows, where you can get one click installer, ubuntu follows different approach to install ruby. In case you are just planning to work on single version of ruby and not going back and">
+<meta property="og:updated_time" content="2017-01-09T10:26:18.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rails ActiveRecord – has_and_belongs_to_many & Duplicate entry Error">
-<meta name="twitter:description" content="Scenario">
+<meta name="twitter:title" content="How to manage multiple ruby versions on ubuntu">
+<meta name="twitter:description" content="As compare to windows, where you can get one click installer, ubuntu follows different approach to install ruby. In case you are just planning to work on single version of ruby and not going back and">
   
     <link rel="alternate" href="/atom.xml" title="Sandeep Kumar" type="application/atom+xml">
   
@@ -105,7 +105,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-ar-duplicate-entry-error" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-How-to-install-ruby-on-ubuntu" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -113,7 +113,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Rails ActiveRecord – has_and_belongs_to_many &amp; Duplicate entry Error
+      How to manage multiple ruby versions on ubuntu
     </h1>
   
 
@@ -121,31 +121,28 @@
     
     <div class="article-meta">
       
-	Posted on <a href="/2010/02/05/ar-duplicate-entry-error/" class="article-date">
-	  <time datetime="2010-02-04T18:30:00.000Z" itemprop="datePublished">February 5, 2010</time>
+	Posted on <a href="/2017/01/09/How-to-install-ruby-on-ubuntu/" class="article-date">
+	  <time datetime="2017-01-09T06:25:47.000Z" itemprop="datePublished">January 9, 2017</time>
 	</a>
 
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Scenario"><a href="#Scenario" class="headerlink" title="Scenario"></a>Scenario</h3><p>In One of my project, we had Many to Many association between models. This allowed me to look more deeply into the has_and_belongs_to_many(HABTM) association.</p>
-<p>When we say:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Movies</span> &lt; ActiveRecord::Base</span></div><div class="line">  has_and_belongs_to_many <span class="symbol">:gallery_photos</span>, <span class="symbol">:join_table=&gt;</span> <span class="string">"movies_gallery_photos"</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GalleryPhoto</span> &lt; ActiveRecord::Base</span></div><div class="line">  has_and_belongs_to_many <span class="symbol">:movies</span>, <span class="symbol">:join_table=&gt;</span> <span class="string">"movies_gallery_photos"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>Rails will assume there is a table “movies_gallery_photos” that include foreign keys to the two entities. So this table should be created by the following migration</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create_table <span class="symbol">:movies_gallery_photos</span>, <span class="symbol">:id=&gt;</span> <span class="literal">false</span> <span class="keyword">do</span> <span class="params">|t|</span></div><div class="line">  t.integer <span class="symbol">:movie_id</span>, <span class="symbol">:null=&gt;</span> <span class="literal">false</span></div><div class="line">  t.integer <span class="symbol">:gallery_photo_id</span>, <span class="symbol">:null=&gt;</span> <span class="literal">false</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p><code>:id=&gt;false</code> will prevent the creation of the default primary key for that table.</p>
-<p>As API documentation say: other attributes in that relation will be loaded with the objects and will be read only, including the :id. So failing to disable the id generation for that table will cause the loaded objects to have and “id” attribute holding the value of the id of the movies_gallery_photos entries instead of the ids of the target entity (movies or gallery_photos here).</p>
-<h4 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h4><p>Having (:id) false helps to over Mysql::Error: Duplicate entry ‘#’ for key #” entry error we faces while adding entries. <code>movie.gallery_photos &lt;&lt; photo</code>. But it leads to creation and availability of duplicate values in the movies_gallery_photos table. i.e.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">movies.gallery_photos &lt;&lt; photos</div></pre></td></tr></table></figure>
-<p>will not check for uniqueness of the photos objects.</p>
+        <p>As compare to windows, where you can get one click installer, ubuntu follows different approach to install ruby. In case you are just planning to work on single version of ruby and not going back and forth with multiple rubies installed, you can simply use the system ruby installed on the ubuntu machines. Latest ubuntu release 16.10 comes with ruby 2.3.x pre-installed. So, out of box is pretty upto date and ready to be used as default ruby.</p>
+<p>But few people love playing around with multiple versions/runtimes of ruby, including me. Some well know options are jruby 1.7.x, jruby 9k, rubinious, ruby 2.3.x/2.4.x etc. For managing multiple versions of ruby, we need some sort of ruby version manager. There are few well knows options like RVM and rbenv. I personally use rbenv and here in this tutorial I will talk about the same.</p>
+<h2 id="What-is-rbenv"><a href="#What-is-rbenv" class="headerlink" title="What is rbenv?"></a>What is rbenv?</h2><p><code>rbenv</code> is ruby version manager, which helps picking the specific version per application. rbenv concentrate on only one thing, which is switching ruby versions as and when required. But with that it supports plugin system to customize it as per our requirements. Now, to install ruby versions, we can either compile our own version or we can use ruby-build to do the dirty work for us. There are different ways to install ruby-build on ubuntu, either as system utility with apt-get or apt or synaptic, or we can installed it as a plugin to rbenv <code>~/.rbenv/plugins/</code>. Installing it as plugin is recommended as it helps to keep ruby-build upto date with git pulls for the repo.</p>
+<h2 id="How-to-Install"><a href="#How-to-Install" class="headerlink" title="How to Install?"></a>How to Install?</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git <span class="built_in">clone</span> git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build</div><div class="line"><span class="built_in">echo</span> <span class="string">'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"'</span> &gt;&gt; ~/.bash_profile</div><div class="line"><span class="built_in">source</span> ~/.bash_profile</div><div class="line">rbenv install <span class="_">-l</span> <span class="string">" List all the availble versions for different ruby runtimes</span></div><div class="line">rbenv install ruby-3.2.x or rbenv install jruby-9.x.x</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/activerecord/">activerecord</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rbenv/">rbenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
 
       
         
@@ -182,15 +179,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2010/08/18/email-providers-improved-black-book/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/01/25/custom-validations-in-rails/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Black Book Web mail import gem-add mail provider
+          Custom Validations in rails
         
       </div>
     </a>
   
+  
+    <a href="/2015/01/18/How-to-create-new-vim-colorscheme/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">VimLeaning: How to create vim colorscheme?</div>
+    </a>
   
 </nav>
 
@@ -203,7 +205,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Scenario"><span class="toc-number">1.</span> <span class="toc-text">Scenario</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue"><span class="toc-number">1.1.</span> <span class="toc-text">Issue</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-rbenv"><span class="toc-number">1.</span> <span class="toc-text">What is rbenv?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-Install"><span class="toc-number">2.</span> <span class="toc-text">How to Install?</span></a></li></ol>
     
     </div>
   </aside>
@@ -251,7 +253,7 @@
 <script>
   var disqus_shortname = 'sandeepkrao';
   
-  var disqus_url = 'http://r3bo0t.github.io/2010/02/05/ar-duplicate-entry-error/';
+  var disqus_url = 'http://r3bo0t.github.io/2017/01/09/How-to-install-ruby-on-ubuntu/';
   
   (function(){
     var dsq = document.createElement('script');

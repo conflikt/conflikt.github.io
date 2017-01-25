@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>rails activerecord – has_and_belongs_to_many &amp; duplicate entry error | Sandeep Kumar</title>
+  <title>custom validations in rails | Sandeep Kumar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="rubyrailsactiverecord" />
+  <meta name="keywords" content="rails" />
   
   
   
   
     <meta name="360-site-verification" content="[object Object]" />
   
-  <meta name="description" content="Scenario">
+  <meta name="description" content="Validation is one of the core features which rails provides. There are plenty of inbuilt validation helpers are there which helps validation our form inputs or user attributes. But in few cases, if th">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rails ActiveRecord – has_and_belongs_to_many & Duplicate entry Error">
-<meta property="og:url" content="http://r3bo0t.github.io/2010/02/05/ar-duplicate-entry-error/index.html">
+<meta property="og:title" content="Custom Validations in rails">
+<meta property="og:url" content="http://r3bo0t.github.io/2017/01/25/custom-validations-in-rails/index.html">
 <meta property="og:site_name" content="Sandeep Kumar">
-<meta property="og:description" content="Scenario">
-<meta property="og:updated_time" content="2016-12-28T11:34:03.836Z">
+<meta property="og:description" content="Validation is one of the core features which rails provides. There are plenty of inbuilt validation helpers are there which helps validation our form inputs or user attributes. But in few cases, if th">
+<meta property="og:updated_time" content="2017-01-25T05:23:35.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rails ActiveRecord – has_and_belongs_to_many & Duplicate entry Error">
-<meta name="twitter:description" content="Scenario">
+<meta name="twitter:title" content="Custom Validations in rails">
+<meta name="twitter:description" content="Validation is one of the core features which rails provides. There are plenty of inbuilt validation helpers are there which helps validation our form inputs or user attributes. But in few cases, if th">
   
     <link rel="alternate" href="/atom.xml" title="Sandeep Kumar" type="application/atom+xml">
   
@@ -105,7 +105,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-ar-duplicate-entry-error" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-custom-validations-in-rails" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -113,7 +113,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Rails ActiveRecord – has_and_belongs_to_many &amp; Duplicate entry Error
+      Custom Validations in rails
     </h1>
   
 
@@ -121,23 +121,17 @@
     
     <div class="article-meta">
       
-	Posted on <a href="/2010/02/05/ar-duplicate-entry-error/" class="article-date">
-	  <time datetime="2010-02-04T18:30:00.000Z" itemprop="datePublished">February 5, 2010</time>
+	Posted on <a href="/2017/01/25/custom-validations-in-rails/" class="article-date">
+	  <time datetime="2017-01-25T05:01:16.000Z" itemprop="datePublished">January 25, 2017</time>
 	</a>
 
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Scenario"><a href="#Scenario" class="headerlink" title="Scenario"></a>Scenario</h3><p>In One of my project, we had Many to Many association between models. This allowed me to look more deeply into the has_and_belongs_to_many(HABTM) association.</p>
-<p>When we say:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Movies</span> &lt; ActiveRecord::Base</span></div><div class="line">  has_and_belongs_to_many <span class="symbol">:gallery_photos</span>, <span class="symbol">:join_table=&gt;</span> <span class="string">"movies_gallery_photos"</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GalleryPhoto</span> &lt; ActiveRecord::Base</span></div><div class="line">  has_and_belongs_to_many <span class="symbol">:movies</span>, <span class="symbol">:join_table=&gt;</span> <span class="string">"movies_gallery_photos"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>Rails will assume there is a table “movies_gallery_photos” that include foreign keys to the two entities. So this table should be created by the following migration</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create_table <span class="symbol">:movies_gallery_photos</span>, <span class="symbol">:id=&gt;</span> <span class="literal">false</span> <span class="keyword">do</span> <span class="params">|t|</span></div><div class="line">  t.integer <span class="symbol">:movie_id</span>, <span class="symbol">:null=&gt;</span> <span class="literal">false</span></div><div class="line">  t.integer <span class="symbol">:gallery_photo_id</span>, <span class="symbol">:null=&gt;</span> <span class="literal">false</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p><code>:id=&gt;false</code> will prevent the creation of the default primary key for that table.</p>
-<p>As API documentation say: other attributes in that relation will be loaded with the objects and will be read only, including the :id. So failing to disable the id generation for that table will cause the loaded objects to have and “id” attribute holding the value of the id of the movies_gallery_photos entries instead of the ids of the target entity (movies or gallery_photos here).</p>
-<h4 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h4><p>Having (:id) false helps to over Mysql::Error: Duplicate entry ‘#’ for key #” entry error we faces while adding entries. <code>movie.gallery_photos &lt;&lt; photo</code>. But it leads to creation and availability of duplicate values in the movies_gallery_photos table. i.e.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">movies.gallery_photos &lt;&lt; photos</div></pre></td></tr></table></figure>
-<p>will not check for uniqueness of the photos objects.</p>
+        <p>Validation is one of the core features which rails provides. There are plenty of inbuilt validation helpers are there which helps validation our form inputs or user attributes. But in few cases, if these inbuilt validation helper doesn’t serve our purpose, rails provide support for writing our own custom validations as well. There are many ways to write custom validations. Few of them are:</p>
+<h2 id="Validate-with-custom-method"><a href="#Validate-with-custom-method" class="headerlink" title="Validate with custom method"></a>Validate with custom method</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span> &lt; ApplicationRecord</span></div><div class="line">  validate <span class="symbol">:custom_validation</span></div><div class="line"></div><div class="line">  private <span class="function"><span class="keyword">def</span> <span class="title">custom_validation</span></span></div><div class="line">    <span class="keyword">if</span> ! (valid...)</div><div class="line">      <span class="keyword">self</span>.errors[<span class="symbol">:base</span>] &lt;&lt; <span class="string">"Custom error message"</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h2 id="Validate-with-ActiveModel-validation"><a href="#Validate-with-ActiveModel-validation" class="headerlink" title="Validate with ActiveModel validation"></a>Validate with ActiveModel validation</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomValidator</span> &lt; ActiveModel::Validator</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">validate</span><span class="params">(record)</span></span></div><div class="line">    <span class="keyword">if</span> ! (record.valid...)</div><div class="line">      record.errors[<span class="symbol">:base</span>] &lt;&lt; <span class="string">"Custom Error message"</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span> &lt; ApplicationRecord</span></div><div class="line">  validates_with CustomValidator</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h2 id="Validate-with-PORO-class"><a href="#Validate-with-PORO-class" class="headerlink" title="Validate with PORO class"></a>Validate with PORO class</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PoroValidator</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(record)</span></span></div><div class="line">    @record = record</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span></span></div><div class="line">    <span class="keyword">if</span> ! (@record.valid...)</div><div class="line">      @record.errors[<span class="symbol">:base</span>] &lt;&lt; <span class="string">"Custom Error Messages"</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span> &lt; ApplicationRecord</span></div><div class="line">  validate <span class="keyword">do</span> <span class="params">|record|</span></div><div class="line">    PoroValidator.new(record).()</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -145,7 +139,7 @@
       
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/activerecord/">activerecord</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li></ul>
 
       
         
@@ -182,15 +176,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2010/08/18/email-providers-improved-black-book/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Black Book Web mail import gem-add mail provider
-        
-      </div>
-    </a>
   
+    <a href="/2017/01/09/How-to-install-ruby-on-ubuntu/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">How to manage multiple ruby versions on ubuntu</div>
+    </a>
   
 </nav>
 
@@ -203,7 +193,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Scenario"><span class="toc-number">1.</span> <span class="toc-text">Scenario</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Issue"><span class="toc-number">1.1.</span> <span class="toc-text">Issue</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Validate-with-custom-method"><span class="toc-number">1.</span> <span class="toc-text">Validate with custom method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Validate-with-ActiveModel-validation"><span class="toc-number">2.</span> <span class="toc-text">Validate with ActiveModel validation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Validate-with-PORO-class"><span class="toc-number">3.</span> <span class="toc-text">Validate with PORO class</span></a></li></ol>
     
     </div>
   </aside>
@@ -251,7 +241,7 @@
 <script>
   var disqus_shortname = 'sandeepkrao';
   
-  var disqus_url = 'http://r3bo0t.github.io/2010/02/05/ar-duplicate-entry-error/';
+  var disqus_url = 'http://r3bo0t.github.io/2017/01/25/custom-validations-in-rails/';
   
   (function(){
     var dsq = document.createElement('script');
